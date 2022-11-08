@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L0Assessment | Bautista, Eligio</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col" style="background-color:chartreuse">
+                <h1 class="fact"></h1>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col" style="background-color:brown">
+                <h1 class="length"></h1>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    request = new XMLHttpRequest()
+    request.open("GET", "https://catfact.ninja/fact")
+    request.send()
+
+    request.onload = function(){
+        if (request.status == 200){
+            data = JSON.parse(request.responseText)
+            console.log(data)
+            document.querySelector(".fact").innerHTML = "Fact: " + data.fact
+            document.querySelector(".length").innerHTML = "Length: " + data.length
+
+        }
+        else if (request.status == 404){
+            console.log("No data found.")
+        }
+
+    }
+</script>
+</html>
